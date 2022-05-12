@@ -30,7 +30,7 @@ jobs:
         id: get_branch_name
       - uses: meeDamian/github-release@v2.0.3
         with:
-          token: ${{ secrets.RELEASE_SECRET }}
+          token: ${{ secrets.AUTOBUILD }}
           tag: v-1
           prerelease: true
           gzip: false
