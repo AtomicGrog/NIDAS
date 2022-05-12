@@ -1,4 +1,4 @@
--- Iport section
+-- Import section
 
 local graphics = require("lib.graphics.graphics")
 local renderer = require("lib.graphics.renderer")

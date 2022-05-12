@@ -101,6 +101,7 @@ function hud.configure(x, y, gui, graphics, renderer, page)
             {name = "  Energy Display", attribute = "energyDisplay",    type = "boolean",   defaultValue = true},
             {name = "  Toolbar Overlay",attribute = "toolbar",          type = "boolean",   defaultValue = true},
             {name = "  Notifications",  attribute = "notifications",    type = "boolean",   defaultValue = true},
+            {name = "Notify Y Offset",  attribute = "notifYOffset",     type = "number",    defaultValue = 40},
         }
         gui.multiAttributeList(x+3, y+3, page, currentConfigWindow, attributeChangeList, glassData, selectedGlasses)
     end
