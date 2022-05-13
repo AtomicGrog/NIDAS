@@ -96,12 +96,12 @@ function hud.configure(x, y, gui, graphics, renderer, page)
             {name = "Primary Color",    attribute = "primaryColor",     type = "color",     defaultValue = colors.electricBlue},
             {name = "Accent Color",     attribute = "accentColor",      type = "color",     defaultValue = colors.magenta},
             {name = "Background Color", attribute = "backgroundColor",  type = "color",     defaultValue = colors.darkGray},
+            {name = "Notify Y Offset",  attribute = "notifYOffset",     type = "number",    defaultValue = 40},
             {name = "",                 attribute = nil,                type = "header",    defaultValue = nil},
             {name = "Active Modules",   attribute = nil,                type = "header",    defaultValue = nil},
             {name = "  Energy Display", attribute = "energyDisplay",    type = "boolean",   defaultValue = true},
             {name = "  Toolbar Overlay",attribute = "toolbar",          type = "boolean",   defaultValue = true},
             {name = "  Notifications",  attribute = "notifications",    type = "boolean",   defaultValue = true},
-            {name = "Notify Y Offset",  attribute = "notifYOffset",     type = "number",    defaultValue = 40},
         }
         gui.multiAttributeList(x+3, y+3, page, currentConfigWindow, attributeChangeList, glassData, selectedGlasses)
     end
