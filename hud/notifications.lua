@@ -155,11 +155,11 @@ local function displayMaintenance(_, serializedData)
     for address, values in pairs(statusData) do
         if values.state.name == states.OFF.name then
             local displayString = values.name or address
-            displayedMachines[address] = notifications.addNotification(displayString .. " is disabled", nil, 0xFF0000)
+            displayedMachines[address] = notifications.addNotification(displayString .. " is disabled", nil, gui.disabledColor()
             --Add location displaying here
         elseif values.state.name == states.BROKEN.name then
             local displayString = values.name or address
-            displayedMachines[address] = notifications.addNotification(displayString .. " requires maintenance", nil, gui.accentColor())
+            displayedMachines[address] = notifications.addNotification(displayString .. " requires maintenance", nil, gui.maintColor())
             --Add location displaying here
         end
         if displayedMachines[address] then
@@ -192,6 +192,8 @@ function notifications.widget(glasses)
                 borderColor     = glasses[i][5] or colors.darkGray,
                 primaryColor    = glasses[i][6] or colors.electricBlue,
                 accentColor     = glasses[i][7] or colors.magenta,
+                disabledColor   = glasses[i][8] or colors.yellow,
+                maintColor      = glasses[i][9] or colors.red,
                 notifications   = notificationTable,
                 queue           = {}
             })
