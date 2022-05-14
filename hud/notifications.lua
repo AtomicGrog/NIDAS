@@ -3,7 +3,7 @@ local ar = require("lib.graphics.ar")
 local event = require("event")
 local screen = require("lib.utils.screen")
 local serialization = require("serialization")
-local states         = require("server.entities.states")
+local states = require("server.entities.states")
 local gui = require("lib.graphics.gui")
 
 local notifications = {}
@@ -110,10 +110,14 @@ local function startup(data, startN, endN)
         event.timer(1.5, retract)
 end
 
-function notifications.addNotification(text, timeout, color)
+function notifications.addNotification(text, timeout, notificationType)
     local retracts = {}
     for i = 1, #hudObjects do
         local hudObject = hudObjects[i]
+
+        local color = hudObject.maintColor
+        if notificationType == states.OFF.name then color = hudObject.disabledColor
+
         local retractFunc = notification(hudObject, text, timeout, color)
         if not timeout then table.insert(retracts, retractFunc) end
     end
@@ -155,11 +159,11 @@ local function displayMaintenance(_, serializedData)
     for address, values in pairs(statusData) do
         if values.state.name == states.OFF.name then
             local displayString = values.name or address
-            displayedMachines[address] = notifications.addNotification(displayString .. " is disabled", nil, gui.disabledColor()
+            displayedMachines[address] = notifications.addNotification(displayString .. " is disabled", nil, states.OFF.name)
             --Add location displaying here
         elseif values.state.name == states.BROKEN.name then
             local displayString = values.name or address
-            displayedMachines[address] = notifications.addNotification(displayString .. " requires maintenance", nil, gui.maintColor())
+            displayedMachines[address] = notifications.addNotification(displayString .. " requires maintenance", nil, states.BROKEN.name)
             --Add location displaying here
         end
         if displayedMachines[address] then
