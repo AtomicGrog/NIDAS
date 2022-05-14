@@ -52,7 +52,7 @@ local function save()
         end
         if data.notifications then
             table.insert(notificationsUsers, {component.proxy(address), {data.xRes or 2560, data.yRes or 1440}, data.scale or 3, data.offset or 0, data.backgroundColor or colors.darkGray, data.primaryColor or colors.electricBlue, data.accentColor or colors.accentColor, data.disabledColor or colors.disabledColor, data.maintColor or colors.maintColor})
-            notifications.changeColor(address, data.backgroundColor, data.primaryColor, data.accentColor,, data.disabledColor, data.maintColor)
+            notifications.changeColor(address, data.backgroundColor, data.primaryColor, data.accentColor, data.disabledColor, data.maintColor)
         end
     end
 
