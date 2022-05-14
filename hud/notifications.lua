@@ -202,11 +202,11 @@ function notifications.widget(glasses)
                 resolution      = glasses[i][2] or {2560, 1440},
                 scale           = glasses[i][3] or 3,
                 offset          = glasses[i][4] or 0,
-                borderColor     = glasses[i][5] or colors.darkGray,
-                primaryColor    = glasses[i][6] or colors.electricBlue,
-                accentColor     = glasses[i][7] or colors.magenta,
-                disabledColor   = glasses[i][8] or colors.yellow,
-                maintColor      = glasses[i][9] or colors.red,
+                borderColor     = glasses[i][5]
+                primaryColor    = glasses[i][6],
+                accentColor     = glasses[i][7],
+                disabledColor   = glasses[i][8],
+                maintColor      = glasses[i][9],
                 displayDisabled = glasses[i][10],
                 notifications   = notificationTable,
                 queue           = {}
