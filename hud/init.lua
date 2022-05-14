@@ -27,7 +27,7 @@ local function load()
         ar.clear(component.proxy(address))
         if data.energyDisplay then table.insert(powerDisplayUsers, {component.proxy(address), {data.xRes or 2560, data.yRes or 1440}, data.scale or 3, data.backgroundColor or colors.darkGray, data.primaryColor or colors.electricBlue, data.accentColor or colors.accentColor}) end
         if data.toolbar then table.insert(toolbarUsers, {component.proxy(address), {data.xRes or 2560, data.yRes or 1440}, data.scale or 3, data.offset or 0, data.backgroundColor or colors.darkGray, data.primaryColor or colors.electricBlue, data.accentColor or colors.accentColor}) end
-        if data.notifications then table.insert(notificationsUsers, {component.proxy(address), {data.xRes or 2560, data.yRes or 1440}, data.scale or 3, data.offset or 0, data.backgroundColor or colors.darkGray, data.primaryColor or colors.electricBlue, data.accentColor or colors.accentColor, data.disabledColor or colors.yellow, data.maintColor or colors.red}) end
+        if data.notifications then table.insert(notificationsUsers, {component.proxy(address), {data.xRes or 2560, data.yRes or 1440}, data.scale or 3, data.offset or 0, data.backgroundColor or colors.darkGray, data.primaryColor or colors.electricBlue, data.accentColor or colors.accentColor, data.disabledColor or colors.yellow, data.maintColor or colors.red, data.displayDisabled or true}) end
     end
     
 end
@@ -52,7 +52,7 @@ local function save()
         end
         if data.notifications then
             table.insert(notificationsUsers, {component.proxy(address), {data.xRes or 2560, data.yRes or 1440}, data.scale or 3, data.offset or 0, data.backgroundColor or colors.darkGray, data.primaryColor or colors.electricBlue, data.accentColor or colors.accentColor, data.disabledColor or colors.disabledColor, data.maintColor or colors.maintColor})
-            notifications.changeColor(address, data.backgroundColor, data.primaryColor, data.accentColor, data.disabledColor, data.maintColor)
+            notifications.changeColor(address, data.backgroundColor, data.primaryColor, data.accentColor, data.disabledColor, data.maintColor, data.displayDisabled)
         end
     end
 
@@ -99,12 +99,14 @@ function hud.configure(x, y, gui, graphics, renderer, page)
             {name = "Resolution (Y)",   attribute = "yRes",             type = "number",    defaultValue = 1440},
             {name = "Scale",            attribute = "scale",            type = "number",    defaultValue = 3},
             {name = "UTC Offset",       attribute = "offset",           type = "number",    defaultValue = 0},
+            {name = "Notify Y Offset",  attribute = "notifYOffset",     type = "number",    defaultValue = 60},
             {name = "Primary Color",    attribute = "primaryColor",     type = "color",     defaultValue = colors.electricBlue},
             {name = "Accent Color",     attribute = "accentColor",      type = "color",     defaultValue = colors.magenta},
             {name = "Background Color", attribute = "backgroundColor",  type = "color",     defaultValue = colors.darkGray},
-            {name = "Disabled Color",   attribute = "disabledColor",    type = "color",     defaultValue = colors.yellow},
             {name = "Maint Color",      attribute = "maintColor",       type = "color",     defaultValue = colors.red},
-            {name = "Notify Y Offset",  attribute = "notifYOffset",     type = "number",    defaultValue = 60},
+            {name = "",                 attribute = nil,                type = "header",    defaultValue = nil},
+            {name = "Display Disabled", attribute = "displayDisabled",  type = "boolean",   defaultValue = true},
+            {name = "Disabled Color",   attribute = "disabledColor",    type = "color",     defaultValue = colors.yellow},
             {name = "",                 attribute = nil,                type = "header",    defaultValue = nil},
             {name = "Active Modules",   attribute = nil,                type = "header",    defaultValue = nil},
             {name = "  Energy Display", attribute = "energyDisplay",    type = "boolean",   defaultValue = true},

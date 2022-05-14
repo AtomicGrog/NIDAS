@@ -114,12 +114,21 @@ function notifications.addNotification(text, timeout, notificationType)
     local retracts = {}
     for i = 1, #hudObjects do
         local hudObject = hudObjects[i]
-
+        local notify = true
         local color = hudObject.maintColor
-        if notificationType == states.OFF.name then color = hudObject.disabledColor end
 
-        local retractFunc = notification(hudObject, text, timeout, color)
-        if not timeout then table.insert(retracts, retractFunc) end
+        if notificationType == states.OFF.name then
+            if hudObject.displayDisabled then
+                color = hudObject.disabledColor
+            else
+                notify = false
+            end
+        end
+
+        if notify then
+            local retractFunc = notification(hudObject, text, timeout, color)
+            if not timeout then table.insert(retracts, retractFunc) end
+        end
     end
     local function retractAll()
         --Remove notifications from queue if they were never shown
@@ -198,6 +207,7 @@ function notifications.widget(glasses)
                 accentColor     = glasses[i][7] or colors.magenta,
                 disabledColor   = glasses[i][8] or colors.yellow,
                 maintColor      = glasses[i][9] or colors.red,
+                displayDisabled = glasses[i][10] or true,
                 notifications   = notificationTable,
                 queue           = {}
             })
