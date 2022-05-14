@@ -21,7 +21,7 @@ local function exec(address, name, location)
     if gtPlusPlus == 7 then gtPlusPlus = string.match(sensorInformation[18] or "", "Problems") and 18 or 7 end
 
     local problems = 0
-    if gtPlusPlus == 5 and string.match(sensorInformation[2] or "", "Maintenance") > 0 then
+    if gtPlusPlus == 5 and string.match(sensorInformation[2] or "", "Needs Maintenance") ~= null then
         problems = 1
     else
         problems = getNumberOfProblems(sensorInformation[gtPlusPlus])
