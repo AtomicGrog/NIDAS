@@ -207,7 +207,7 @@ function notifications.widget(glasses)
                 accentColor     = glasses[i][7] or colors.magenta,
                 disabledColor   = glasses[i][8] or colors.yellow,
                 maintColor      = glasses[i][9] or colors.red,
-                displayDisabled = glasses[i][10] or true,
+                displayDisabled = glasses[i][10],
                 notifications   = notificationTable,
                 queue           = {}
             })
