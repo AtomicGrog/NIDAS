@@ -19,7 +19,13 @@ local function exec(address, name, location)
 
     local gtPlusPlus = string.match(sensorInformation[5] or "", "EU") and 7 or 5
     if gtPlusPlus == 7 then gtPlusPlus = string.match(sensorInformation[18] or "", "Problems") and 18 or 7 end
-    local problems = getNumberOfProblems(sensorInformation[gtPlusPlus])
+
+    local problems = 0
+    if gtPlusPlus == 5 and string.match(sensorInformation[2] or "", "Maintenance") > 0 then
+        problems = 1
+    else
+        problems = getNumberOfProblems(sensorInformation[gtPlusPlus])
+    end
 
     local state = {}
     if multiblock:isWorkAllowed() then
@@ -29,7 +35,7 @@ local function exec(address, name, location)
             state = states.IDLE
         end
     else
-        state = states.OFF
+        state = states.OFF,a
     end
 
     if problems > 0 then

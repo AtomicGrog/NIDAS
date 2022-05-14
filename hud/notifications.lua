@@ -202,7 +202,7 @@ function notifications.widget(glasses)
                 resolution      = glasses[i][2] or {2560, 1440},
                 scale           = glasses[i][3] or 3,
                 offset          = glasses[i][4] or 0,
-                borderColor     = glasses[i][5]
+                borderColor     = glasses[i][5],
                 primaryColor    = glasses[i][6],
                 accentColor     = glasses[i][7],
                 disabledColor   = glasses[i][8],
