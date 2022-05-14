@@ -116,7 +116,7 @@ function notifications.addNotification(text, timeout, notificationType)
         local hudObject = hudObjects[i]
 
         local color = hudObject.maintColor
-        if notificationType == states.OFF.name then color = hudObject.disabledColor
+        if notificationType == states.OFF.name then color = hudObject.disabledColor end
 
         local retractFunc = notification(hudObject, text, timeout, color)
         if not timeout then table.insert(retracts, retractFunc) end
