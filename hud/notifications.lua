@@ -9,14 +9,14 @@ local gui = require("lib.graphics.gui")
 local notifications = {}
 local hudObjects = {}
 
-local startY = 40
+local startY = 60
 local stepModifier = 3
 
 function event.onError(message)
     error(message)
 end
 
-local function notification(data, string, timeout, color, forceSlot)
+local function notification(data, string, timeout, color, forceSlot, yOffset)
     local yModifier = forceSlot or nil
     if not forceSlot then
         for i = 1, #data.notifications do
@@ -30,7 +30,7 @@ local function notification(data, string, timeout, color, forceSlot)
     if yModifier then
         local glasses = data.glasses
         local width = 18 + #string * 4.8
-        local y = startY + yModifier * 10
+        local y = yOffset + yModifier * 10
         local x = 0
         local stepSize = stepModifier * math.ceil(width / 30)
         local top = ar.quad(glasses, {x, y}, {x, y+1}, {x, y+1}, {x, y}, data.borderColor, 0.8)
