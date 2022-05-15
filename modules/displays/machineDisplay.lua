@@ -142,8 +142,13 @@ local function genericMachine(savedX, savedY, skipRendering)
             local machine = machineList[i]
             if machine.x == xLoc and machine.y == yLoc then
                 toRename = machine
-                print(machine)
-            end
+                local newName = gui.wrappedTextBox(xLoc, yLoc, 30, 3, machine.name, "New Name")
+                print("----------------")
+                print(machine.name)
+                print("----------------")
+                print(newName)
+                print("----------------")
+             end
         end
     end
     local function setMachine(savedAddress, skipSaving)
@@ -187,7 +192,7 @@ local function genericMachine(savedX, savedY, skipRendering)
         {displayName = "Set Address",
         value = setMachine,
         args = {}},
-        {displayName = "Remove",
+        {displayName = "Delete",
         value = delete,
         args = {}},
         {displayName = "Rename",
