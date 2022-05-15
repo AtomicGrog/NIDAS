@@ -136,6 +136,16 @@ local function genericMachine(savedX, savedY, skipRendering)
             end
         end
     end
+    local function rename()
+        local toRename = {}
+        for i = 1, #machineList do
+            local machine = machineList[i]
+            if machine.x == xLoc and machine.y == yLoc then
+                toRename = machine
+                print(machine)
+            end
+        end
+    end
     local function setMachine(savedAddress, skipSaving)
         local file = io.open("/home/NIDAS/settings/known-machines", "r")
         local knownMachines = {}
@@ -179,6 +189,9 @@ local function genericMachine(savedX, savedY, skipRendering)
         args = {}},
         {displayName = "Remove",
         value = delete,
+        args = {}},
+        {displayName = "Rename",
+        value = rename,
         args = {}}
     }
     renderer.setClickable(page, gui.selectionBox, {xLoc, yLoc, onActivation}, {xLoc, yLoc}, {xLoc+20, yLoc+3})
